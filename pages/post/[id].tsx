@@ -7,11 +7,8 @@ import {postCommentTC} from "../../redux/reducers/PostReducer";
 import {getPostTC} from "../../redux/reducers/PostReducer";
 
 
-interface RefObject {
-    value: any
-}
 const Post = ({post}) => {
-    let commentRef = useRef<RefObject>(null);
+    let commentRef = useRef(null);
     // useSelector
     const commentsList = useSelector((state: any) => state.post.post );
     // useDispatch
@@ -36,7 +33,7 @@ const Post = ({post}) => {
             <Link href={'/posts'}>Back to all posts</Link>
             <div className="createComment">
                 <div className="form-group">
-                    <textarea ref={commentRef} className="form-control" rows="3" placeholder="Comment body"></textarea>
+                    <textarea ref={commentRef} className="form-control" placeholder="Comment body"></textarea>
                 </div>
                 <button type="button" className="btn btn-outline-primary" onClick={() => newComment()}>Create comment</button>
             </div>

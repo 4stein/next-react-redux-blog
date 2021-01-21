@@ -5,14 +5,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUsersTC, postUsersTC} from "../redux/reducers/PostsReducer";
 import {useRef} from "react";
 
-interface RefObject {
-    value: any
-}
+
 
 const Posts = () => {
 
-    let titleRef = useRef<RefObject>(null);
-    let bodyRef = useRef<RefObject>(null);
+    let titleRef = useRef(null);
+    let bodyRef = useRef(null);
     // useSelector
     const postsList = useSelector((state: any) => state.posts.posts);
     // useDispatch
@@ -25,6 +23,7 @@ const Posts = () => {
         let body = bodyRef.current.value
         dispatch(postUsersTC(title, body))
         titleRef.current.value = ''
+        bodyRef.current.value = ''
     }
     useEffect(() => {
         uploadNotes()
@@ -39,7 +38,7 @@ const Posts = () => {
                     <input ref={titleRef} type="text" className="form-control" placeholder="Post title"/>
                 </div>
                 <div className="form-group">
-                    <textarea ref={bodyRef} className="form-control" rows="3" placeholder="Post body"></textarea>
+                    <textarea ref={bodyRef} className="form-control" placeholder="Post body"></textarea>
                 </div>
                 <button type="button" className="btn btn-outline-primary" onClick={() => newNote()}>Create post</button>
             </div>
